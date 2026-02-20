@@ -3,13 +3,20 @@
 - Variant: <13>
 
 ## 1. Introduction
-МОТИВАЦИЯ -> Ускорение поиска максимально элемента в матрицах большого размера,за счёт распределения нагрузки по нескольким процесам
-ПРОБЛЕМА  -> Матрицы большого размера могут очень долго обрабатываться
+МОТИВАЦИЯ -> Ускорение поиска максимально элемента в матрицах
+большого размера,за счёт распределения нагрузки по нескольким процесам
+
+ПРОБЛЕМА  -> Матрицы большого размера могут очень долго
+обрабатываться
+
 РЕЗУЛЬТАТ -> Ускорение производительности.
 
 ## 2. Problem Statement
-Formal task definition -> для матрицы размером A[a1,b1] найти максимальный элемент
-input/output format    -> на вход подаётся Matrix(тоесть данные матрицы), на выход подаётся 1 int значение, которое является максимумом в матрице
+Formal task definition -> для матрицы размером A[a1,b1] найти
+максимальный элемент
+input/output format    -> на вход подаётся Matrix(тоесть данные
+матрицы), на выход подаётся 1 int значение, которое является
+максимумом в матрице
 constraints            -> a1,b1 > 0, matrix.size() = a1 * b1.
 
 ## 3. Baseline Algorithm (Sequential)
@@ -30,8 +37,10 @@ data distribution:
 , communication pattern:
 ```cpp
 //распределение данных
-MPI_Scatterv(matrix.data(), how_many_to_one_proces.data(), offset.data(), MPI_INT, recvbuf.data(),
-               how_many_to_one_proces[rank], MPI_INT, 0, MPI_COMM_WORLD);
+MPI_Scatterv(matrix.data(), how_many_to_one_proces.data(), offset
+data(), MPI_INT, recvbuf.data(),
+               how_many_to_one_proces[rank], MPI_INT, 0,
+               MPI_COMM_WORLD);
 //поиск локального максимума
   int local_max;
   if (!recvbuf.empty()) {
@@ -44,7 +53,8 @@ MPI_Scatterv(matrix.data(), how_many_to_one_proces.data(), offset.data(), MPI_IN
   }
 //поиск глобального максимума
   int global_max;
-  MPI_Allreduce(&local_max, &global_max, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
+  MPI_Allreduce(&local_max, &global_max, 1, MPI_INT, MPI_MAX
+  MPI_COMM_WORLD);
 ```
  rank roles.
  Rank 0 - распределение задач
@@ -137,19 +147,28 @@ Present time, speedup and efficiency. Example table:
 
 
 ## 8. Conclusions
-ВЫВОД :использование mpi показало свою эффективность, ускорив работу в 2.32 раза в среднем
-таким образом можно сделать вывод, что распределение нагрузки на несколько процессов является
+ВЫВОД :использование mpi показало свою эффективность, ускорив работу
+в 2.32 раза в среднем
+таким образом можно сделать вывод, что распределение нагрузки на
+несколько процессов является
 максимально эффективным метод работы с большим количеством данных
-Также можно заметить, что на 6 процессах время выполнения больше чем на 4, это может быть связано
-с тем, что распределение проверяемой матрицы получилось не равномерным.
-Наибольшая эффективность достигается на 2 процессах, однако максимальное абсолютное ускорение на 8 процессах
-Ограничения: если матрицы маленькие, то mpi является неэффективным методом работы
-Следовательно использование MPI является эффективным в условиях больших матриц когда комуникация между процессами
+Также можно заметить, что на 6 процессах время выполнения больше чем
+на 4, это может быть связано
+с тем, что распределение проверяемой матрицы получилось не
+равномерным.
+Наибольшая эффективность достигается на 2 процессах, однако
+максимальное абсолютное ускорение на 8 процессах
+Ограничения: если матрицы маленькие, то mpi является неэффективным
+методом работы
+Следовательно использование MPI является эффективным в условиях
+больших матриц когда комуникация между процессами
 не затратит времени больше, чем сама работа с данными
 
 ## 9. References
-  MICROSOFT MPI - https://learn.microsoft.com/ru-ru/message-passing-interface/microsoft-mpi
-  Parallel Programming Course - https://learning-process.github.io/parallel_programming_course/ru/index.html
-  Parallel Programming 2025-2026 - https://disk.yandex.ru/d/NvHFyhOJCQU65w
+  MICROSOFT MPI - https://learn.microsoft.com/ru-ru
+  message-passing-interface/microsoft-mpi
+  Parallel Programming Course - https://learning-process.github.io
+  parallel_programming_course/ru/index.html
+  Parallel Programming 2025-2026 - https://disk.yandex.ru/d
+  NvHFyhOJCQU65w
   stack overflow - https://stackoverflow.com/questions
-  
