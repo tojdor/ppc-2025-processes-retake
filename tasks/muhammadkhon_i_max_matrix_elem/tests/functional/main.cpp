@@ -106,7 +106,7 @@ TEST_P(MuhammadkhonIMaxMatrixElemTests, MatmulFromPic) {
   ExecuteTest(GetParam());
 }
 
-const std::array<TestType, 11> kTestParam = {
+const std::array<TestType, 8> kTestParam = {
     std::make_tuple(1, "2x2_matrix"),       std::make_tuple(2, "with_negatives"),  std::make_tuple(3, "single_element"),
     std::make_tuple(4, "repeated_max"),     std::make_tuple(5, "all_zeros"),       std::make_tuple(6, "all_negatives"),
     std::make_tuple(7, "3x3_large_values"), std::make_tuple(8, "1x5_same_values"),
