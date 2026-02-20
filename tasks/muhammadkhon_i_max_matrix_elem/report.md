@@ -152,3 +152,4 @@ Present time, speedup and efficiency. Example table:
   Parallel Programming Course - https://learning-process.github.io/parallel_programming_course/ru/index.html
   Parallel Programming 2025-2026 - https://disk.yandex.ru/d/NvHFyhOJCQU65w
   stack overflow - https://stackoverflow.com/questions
+  xtr
